@@ -4,7 +4,7 @@ import "./auth.css";
 import { Login, SignUp } from "./components";
 
 export function Auth() {
-  useDocTitle("Auth - SmashCart - Manoj Sarna");
+  useDocTitle("Auth - Smasher - Manoj Sarna");
   const [authVal, setAuthVal] = useState(true);
 
   return (

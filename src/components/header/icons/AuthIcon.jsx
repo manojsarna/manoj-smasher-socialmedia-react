@@ -1,10 +1,10 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context";
 
 export function AuthIcon() {
-  const { user } = useAuth();
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
-  return user ? (
+  return user._id ? (
     <button
       className="sm-icon-btn color-dm sm-icon-btn-primary sm-header-nav-user-avatar"
       title={user ? "Go To User Profile" : "Go To Login"}

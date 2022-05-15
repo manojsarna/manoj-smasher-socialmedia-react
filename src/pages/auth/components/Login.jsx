@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAuth } from "../../../context";
-
+import { useDispatch } from "react-redux";
+import { login, testLogin } from "../../../redux/reducers/authSlice";
 export function Login({ setAuthVal }) {
-  const testLogin = { username: "manojsarna", password: "Manoj@123" };
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     username: "",
     password: "",
@@ -11,7 +11,6 @@ export function Login({ setAuthVal }) {
     show: false,
     message: "",
   });
-  const { loginAuth } = useAuth();
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
   const loginHandler = () => {
@@ -23,7 +22,7 @@ export function Login({ setAuthVal }) {
         show: false,
         message: "",
       });
-      loginAuth(loginDetails);
+      dispatch(login(loginDetails));
     } else {
       setErrorMessage({
         show: true,
@@ -92,7 +91,7 @@ export function Login({ setAuthVal }) {
           className="btn btn-txt test-login"
           onClick={(e) => {
             e.preventDefault();
-            setLoginDetails(testLogin);
+            dispatch(testLogin());
           }}
         >
           TEST LOGIN

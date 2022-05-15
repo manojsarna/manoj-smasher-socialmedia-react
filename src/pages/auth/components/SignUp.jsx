@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useAuth } from "../../../context";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../../redux/reducers/authSlice";
 
 export function SignUp({ setAuthVal }) {
+  const dispatch = useDispatch();
   const [signUpDetails, setsignUpDetails] = useState({
     firstName: "",
     lastName: "",
@@ -16,8 +18,6 @@ export function SignUp({ setAuthVal }) {
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
-  const { signUpAuth } = useAuth();
-
   const signUpHandler = () => {
     if (
       signUpDetails.firstName !== "" &&
@@ -30,7 +30,7 @@ export function SignUp({ setAuthVal }) {
         show: false,
         message: "",
       });
-      signUpAuth(signUpDetails);
+      dispatch(signUp(signUpDetails));
     } else {
       setErrorMessage({
         show: true,

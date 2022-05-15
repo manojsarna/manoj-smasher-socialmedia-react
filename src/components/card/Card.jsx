@@ -1,8 +1,9 @@
 import "./card.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useSelector } from "react-redux";
+
 export function Card({ product, btnName }) {
-  const { user } = useAuth();
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const pathName = useLocation();
 
@@ -26,13 +27,13 @@ export function Card({ product, btnName }) {
         <button
           className="sm-card-fav"
           title={`${
-            isProductInWishList && user
+            isProductInWishList && user._id
               ? "Remove From Wishlist"
               : "Add To Wishlist"
           }`}
           onClick={(e) => {
             e.stopPropagation();
-            if (!user) {
+            if (!user._id) {
               navigate("/auth", {
                 state: { from: pathName },
                 replace: true,
@@ -44,7 +45,7 @@ export function Card({ product, btnName }) {
         >
           <i
             className={`fa-heart ${
-              isProductInWishList && user ? "fas" : "far"
+              isProductInWishList && user._id ? "fas" : "far"
             }`}
           ></i>
         </button>
@@ -80,9 +81,9 @@ export function Card({ product, btnName }) {
           </span>
           <button
             className="btn btn-primary cart-btn"
-            title={isProductInCart && user ? "Go To Cart" : btnName}
+            title={isProductInCart && user._id ? "Go To Cart" : btnName}
             onClick={() => {
-              if (!user) {
+              if (!user._id) {
                 navigate("/auth", {
                   state: { from: pathName },
                   replace: true,
@@ -94,7 +95,7 @@ export function Card({ product, btnName }) {
             }}
           >
             <i className="btn-cart fas fa-shopping-cart"></i>
-            {isProductInCart && user ? "Go To Cart" : btnName}
+            {isProductInCart && user._id ? "Go To Cart" : btnName}
           </button>
         </div>
       </div>

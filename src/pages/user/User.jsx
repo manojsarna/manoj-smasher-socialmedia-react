@@ -1,16 +1,20 @@
-import { useAuth } from "../../context";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useDocTitle } from "../../hooks/useDocTitle";
+import { logout } from "../../redux/reducers/authSlice";
 import "./user.css";
 
 export function User() {
-  const { user, logoutAuth } = useAuth();
-  useDocTitle("User Profile - SmashCart - Manoj Sarna");
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  useDocTitle("User Profile - Smasher - Manoj Sarna");
   return (
     <main className="sm-main">
       <div className="sm-main-user-profile-container">
         <div className="sm-main-user-profile">
           <p className="sm-main-heading">
-            {`${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}'s `}
+            {user &&
+              `${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}'s `}
             Profile Page
           </p>
         </div>
@@ -30,7 +34,7 @@ export function User() {
               <button
                 className="sm-category-outline-btn sm-active"
                 title="Logout Now"
-                onClick={() => logoutAuth()}
+                onClick={() => dispatch(logout())}
               >
                 Logout
               </button>
