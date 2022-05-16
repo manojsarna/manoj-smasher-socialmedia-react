@@ -21,3 +21,8 @@ html {
   grid-template-rows: auto 1fr auto;
   transition: all 0.2s ease-in;
 }
+
+.toast-container {
+  font-size: 2rem;
+  font-weight: 700;
+}
