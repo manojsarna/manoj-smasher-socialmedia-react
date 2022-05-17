@@ -23,11 +23,11 @@ export function Home() {
   const loading = useSelector((state) => state.posts.loading);
 
   const postHandler = (postDetails) => {
-    dispatch(createPost(postDetails));
-    setPostDetails("");
     if (postDetails !== "") {
+      dispatch(createPost(postDetails));
+      setPostDetails("");
     } else {
-      toast.error("Why are you Posting Empty Post?");
+      toast.error("Post is Empty. Try Again!");
     }
   };
 
