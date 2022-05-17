@@ -26,3 +26,29 @@ html {
   font-size: 2rem;
   font-weight: 700;
 }
+
+.sm-main {
+  grid-area: main;
+  display: grid;
+  grid-template-areas: "... left-sidebar content-area right-sidebar ...";
+  grid-template-columns: 0.1fr 1.3fr 6fr 3fr 0.1fr;
+
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+  #root .sm-main {
+    grid-template-areas: "left-sidebar content-area";
+    grid-template-columns: 1fr 6fr;
+    grid-gap: 5px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #root .sm-main {
+    grid-template-areas: "content-area";
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+}

@@ -1,6 +1,8 @@
-/* .sm-main .sm-main-feature-p {
-  height: 70vh;
-} */
+.sm-content-area {
+  grid-area: content-area;
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
 .sm-main-user-profile-container {
   display: flex;
@@ -8,7 +10,6 @@
   align-items: initial;
   gap: 1rem;
   margin: 2rem;
-  height: 70vh;
 }
 .sm-main-user-profile {
   display: flex;
@@ -18,7 +19,7 @@
 }
 
 .sm-main-heading {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 800;
 }
 
@@ -61,17 +62,21 @@
   color: var(--COLOR-HEADER-FONT-DARK);
   background: var(--COLOR-BG);
   border: 1px solid var(--COLOR-HEADER-FONT-DARK);
-  border-radius: 5rem;
   font-weight: 600;
-  padding: 1rem 3rem;
   white-space: nowrap;
+  width: 3em;
+  height: 3em;
   cursor: pointer;
+  border-radius: 50%;
   transition: background ease-in 0.2s;
 }
 
 .sm-category-outline-btn:hover {
   color: var(--COLOR-BLACK);
   background: var(--COLOR-HEADER-FONT-DARK);
+}
+.sm-category-outline-btn:active {
+  transform: scale(0.98);
 }
 .sm-active {
   color: var(--COLOR-BLACK);

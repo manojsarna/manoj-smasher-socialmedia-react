@@ -34,9 +34,7 @@
   .sm-footer {
     display: none;
   }
-  #root {
-    height: 100vh;
-  }
+
   .sm-footer-icons-mobile {
     grid-area: footer;
     display: flex;
@@ -47,7 +45,7 @@
     bottom: 0;
     padding: 1.5rem;
     border-top: 2px solid var(--COLOR-HEADER-FONT-DARK);
-    transition: color ease-in 0.2s;
+    transition: all ease-in 0.2s;
     background: var(--COLOR-BG);
   }
 }

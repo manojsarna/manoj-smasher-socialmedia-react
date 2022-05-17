@@ -13,7 +13,7 @@ export function Header() {
       <nav className="sm-nav-new">
         <Logo />
 
-        {currentPath.pathname !== null ? (
+        {currentPath.pathname === null ? (
           <Search searchMob={false} />
         ) : (
           <div className="sm-extra-div"></div>
@@ -29,10 +29,10 @@ export function Header() {
           }`}
         >
           <LightDarkIcon />
-          <AuthIcon />
+          {/* <AuthIcon /> */}
         </div>
       </nav>
-      {currentPath.pathname !== null && <Search searchMob={true} />}
+      {currentPath.pathname === null && <Search searchMob={true} />}
     </header>
   );
 }

@@ -6,17 +6,20 @@ const initialState = {
   token: "",
 };
 
-export const login = createAsyncThunk("auth/login", async (loginDetails) => {
-  try {
-    const response = await axios.post(`/api/auth/login`, {
-      username: loginDetails.username,
-      password: loginDetails.password,
-    });
-    return response.data;
-  } catch (error) {
-    toast.error(`${error.response.data.errors}`);
+export const login = createAsyncThunk(
+  "auth/login",
+  async (loginDetails, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`/api/auth/login`, {
+        username: loginDetails.username,
+        password: loginDetails.password,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(`${error.response.data.errors}`);
+    }
   }
-});
+);
 
 export const signUp = createAsyncThunk("auth/signup", async (signUpDetails) => {
   try {
@@ -74,6 +77,12 @@ const authSlice = createSlice({
           state.user = action.payload.foundUser;
           state.token = action.payload.encodedToken;
           toast.success("Login Successful");
+        }
+      })
+      .addCase(login.rejected, (state, action) => {
+        console.log(action.payload);
+        if (action.payload) {
+          toast.error(action.payload);
         }
       })
       .addCase(signUp.fulfilled, (state, action) => {

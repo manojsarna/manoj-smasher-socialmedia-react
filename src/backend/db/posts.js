@@ -14,7 +14,7 @@ export const posts = [
     username: "manojsarna",
     profilePhoto:
       "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
-    content: `toote hue dil se hi #code nikalta hai 🚀🧑‍💻`,
+    content: `toote hue dil se hi #code nikalta hai 🚀🧑‍💻.`,
 
     likes: {
       likeCount: 1000,
@@ -32,7 +32,8 @@ export const posts = [
     username: "johndoe",
     profilePhoto:
       "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
-    content: "Well-written Python looks like a poem to your computer.",
+    content:
+      "Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.Well-written Python looks like a poem to your computer.",
     likes: {
       likeCount: 500,
       likedBy: [],
@@ -52,7 +53,7 @@ export const posts = [
       "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
     content: "Everybody is riding the web3 wave.",
     likes: {
-      likeCount: 200,
+      likeCount: 200123,
       likedBy: [],
       dislikedBy: [],
     },
