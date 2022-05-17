@@ -1,0 +1,11 @@
+.sm-main-user-bookmarks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: initial;
+  gap: 1rem;
+  margin: 2rem;
+}
+.sm-main-user-bookmarks-container .sm-main-heading {
+  font-size: 2.4rem;
+  font-weight: 800;
+}

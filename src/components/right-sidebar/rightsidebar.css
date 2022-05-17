@@ -1,0 +1,23 @@
+.sm-right-sidebar {
+  grid-area: right-sidebar;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--COLOR-HEADER-FONT-DARK);
+  width: 100%;
+  position: sticky;
+  top: 8rem;
+  height: 90vh;
+}
+
+.sm-right-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 768px) {
+  .sm-right-sidebar {
+    display: none;
+  }
+}

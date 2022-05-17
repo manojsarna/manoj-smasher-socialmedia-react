@@ -1,4 +1,10 @@
-import { AuthIcon, HomeIcon, LightDarkIcon } from "../header/icons";
+import {
+  AuthIcon,
+  BookmarksIcon,
+  ExploreIcon,
+  HomeIcon,
+  LightDarkIcon,
+} from "../header/icons";
 import "./footer.css";
 
 export function Footer() {
@@ -32,6 +38,8 @@ export function Footer() {
       <footer className="sm-footer-icons-mobile">
         <LightDarkIcon />
         <HomeIcon />
+        <ExploreIcon />
+        <BookmarksIcon />
         <AuthIcon />
       </footer>
     </>

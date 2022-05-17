@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { LeftSideBar, RightSideBar } from "../../components";
 
 import { useDocTitle } from "../../hooks/useDocTitle";
 import { logout } from "../../redux/reducers/authSlice";
@@ -10,38 +11,25 @@ export function User() {
   useDocTitle("User Profile - Smasher - Manoj Sarna");
   return (
     <main className="sm-main">
-      <div className="sm-main-user-profile-container">
-        <div className="sm-main-user-profile">
-          <p className="sm-main-heading">
-            {user &&
-              `${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}'s `}
-            Profile Page
-          </p>
-        </div>
-        <div className="sm-user-profile-info">
-          <div className="sm-user-card">
-            <div className="avatar avatar-hover avatar-text bg-3 s-xxl">
-              <h2>{`${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}`}</h2>
-            </div>
-            <div className="sm-user-content">
-              <h2>{`${user.firstName} ${user.lastName}`}</h2>
-              <h3>{user.email}</h3>
-            </div>
-            <div className="sm-user-card-btn">
-              <button className="sm-category-outline-btn " title="Edit Profile">
-                Edit Profile
-              </button>
-              <button
-                className="sm-category-outline-btn sm-active"
-                title="Logout Now"
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </button>
-            </div>
+      <LeftSideBar />
+      <div className="sm-content-area">
+        <div className="sm-main-user-profile-container">
+          <div className="sm-main-user-profile">
+            <p className="sm-main-heading">
+              {user && `${user.firstName} ${user.lastName}'s `}
+              Profile
+            </p>
+            <button
+              className="sm-category-outline-btn sm-active"
+              title="Logout Now"
+              onClick={() => dispatch(logout())}
+            >
+              <i className="fas fa-sign-out-alt"></i>
+            </button>
           </div>
         </div>
       </div>
+      <RightSideBar />
     </main>
   );
 }

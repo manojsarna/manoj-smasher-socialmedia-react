@@ -8,12 +8,10 @@ export function AuthIcon() {
     <button
       className="sm-icon-btn color-dm sm-icon-btn-primary sm-header-nav-user-avatar"
       title={user ? "Go To User Profile" : "Go To Login"}
-      onClick={() => navigate("/user")}
+      onClick={() => navigate(`${user.username}`)}
     >
-      <div className="avatar avatar-hover avatar-text bg-2 s-xs">
-        <h4>
-          {`${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}`}
-        </h4>
+      <div className="avatar avatar-hover s-xs sm-profile-div-avatar">
+        <img src={`${user.profilePhoto}`} alt="badminton" />
       </div>
     </button>
   ) : (

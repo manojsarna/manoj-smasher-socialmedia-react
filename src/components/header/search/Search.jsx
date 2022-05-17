@@ -5,7 +5,7 @@ export function Search({ searchMob }) {
 
   return (
     <div className={`sm-nav-search${searchMob ? "-mobile" : ""}`}>
-      {location.pathname === "/products" && (
+      {location.pathname !== "/" && (
         <div className="sm-input-container input-search">
           <input
             type="text"
