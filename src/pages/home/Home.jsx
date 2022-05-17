@@ -24,8 +24,12 @@ export function Home() {
 
   const postHandler = (postDetails) => {
     if (postDetails !== "") {
-      dispatch(createPost(postDetails));
-      setPostDetails("");
+      if (postDetails.length > 5) {
+        dispatch(createPost(postDetails));
+        setPostDetails("");
+      } else {
+        toast.error("Post length must be more than 5 chars!");
+      }
     } else {
       toast.error("Post is Empty. Try Again!");
     }
