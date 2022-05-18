@@ -27,9 +27,9 @@ export const posts = [
   },
   {
     _id: uuid(),
-    firstName: "John",
-    lastName: "Doe",
-    username: "johndoe",
+    firstName: "Jesse",
+    lastName: "Green",
+    username: "jessegreen",
     profilePhoto:
       "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
     content:
@@ -53,7 +53,7 @@ export const posts = [
       "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
     content: "Everybody is riding the web3 wave.",
     likes: {
-      likeCount: 200123,
+      likeCount: 20012,
       likedBy: [],
       dislikedBy: [],
     },
