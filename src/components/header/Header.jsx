@@ -29,7 +29,7 @@ export function Header() {
           }`}
         >
           <LightDarkIcon />
-          {/* <AuthIcon /> */}
+          <AuthIcon />
         </div>
       </nav>
       {currentPath.pathname === null && <Search searchMob={true} />}

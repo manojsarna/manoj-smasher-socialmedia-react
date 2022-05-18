@@ -1,0 +1,24 @@
+.sm-avatar-link-container {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sm-avatar-link-profile {
+  padding: 1rem 0;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.sm-avatar-link-info {
+  display: flex;
+  flex-direction: column;
+}
+.sm-avatar-link-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sm-avatar-link-username {
+  color: var(--COLOR-GREY);
+}

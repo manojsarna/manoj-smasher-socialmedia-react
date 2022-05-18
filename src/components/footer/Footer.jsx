@@ -10,7 +10,7 @@ import "./footer.css";
 export function Footer() {
   return (
     <>
-      <footer className="sm-footer">
+      {/* <footer className="sm-footer">
         <h4>
           Made with ❤️ by <strong>Manoj Sarna</strong>
         </h4>
@@ -34,7 +34,7 @@ export function Footer() {
             <i className="btn-social fab fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer> */}
       <footer className="sm-footer-icons-mobile">
         <LightDarkIcon />
         <HomeIcon />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export function AuthIcon() {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
-  return user._id ? (
+  return user ? (
     <button
       className="sm-icon-btn color-dm sm-icon-btn-primary sm-header-nav-user-avatar"
       title={user ? "Go To User Profile" : "Go To Login"}
