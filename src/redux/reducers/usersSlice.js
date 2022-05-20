@@ -75,7 +75,7 @@ export const editUser = createAsyncThunk("users/edit", async (userData) => {
     );
     return response.data;
   } catch (error) {
-    console.log(error);
+    toast.error(`${error.response.data.errors}`);
   }
 });
 

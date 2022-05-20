@@ -6,11 +6,12 @@
 }
 
 .sm-dot-separator {
-  background-color: var(--COLOR-HEADER-FONT-DARK);
+  background: var(--COLOR-GREY);
   border-radius: 50%;
   display: inline-block;
   height: 3px;
   width: 3px;
+  color: var(--COLOR-GREY);
 }
 
 .sm-single-post-content {
@@ -31,6 +32,7 @@
 .sm-post-username,
 .sm-post-date {
   color: var(--COLOR-GREY);
+  cursor: pointer;
 }
 
 .sm-post-cta-container {
@@ -64,6 +66,11 @@
 .sm-cta-like-count {
   font-size: 1.8rem;
   font-weight: 700;
+}
+
+.sm-remove-link-props {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media only screen and (max-width: 1024px) {

@@ -12,14 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdImage } from "react-icons/md/";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { createPost } from "../../redux/reducers/postsSlice";
+import { createPost, sortByValue } from "../../redux/reducers/postsSlice";
 
 export function Home() {
   useDocTitle("Home - Smasher - Manoj Sarna");
   const [postDetails, setPostDetails] = useState("");
+  const [selectSortValue, setSelectSortValue] = useState("Latest");
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
+  let sortBy = useSelector((state) => state.posts.sortBy);
   const loading = useSelector((state) => state.posts.loading);
 
   const postHandler = (postDetails) => {
@@ -35,6 +37,31 @@ export function Home() {
     }
   };
 
+  let finalPosts = [...posts];
+
+  switch (sortBy) {
+    case "Trending": {
+      finalPosts = finalPosts.sort(
+        (a, b) => b.likes.likeCount - a.likes.likeCount
+      );
+      break;
+    }
+    case "Latest": {
+      finalPosts = finalPosts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      break;
+    }
+    case "Oldest": {
+      finalPosts = finalPosts.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+      break;
+    }
+    default:
+      break;
+  }
+
   return (
     <main className="sm-main">
       <LeftSideBar />
@@ -43,7 +70,15 @@ export function Home() {
         <div className="sm-main-user-homepage-container">
           <div className="sm-home-top">
             <p className="sm-main-heading">Home</p>
-            <select className="sm-home-select-sort" title="Select Options">
+            <select
+              className="sm-home-select-sort"
+              title="Select Options"
+              value={selectSortValue}
+              onChange={(e) => {
+                setSelectSortValue(e.target.value);
+                dispatch(sortByValue(e.target.value));
+              }}
+            >
               <option value="Latest">Latest Posts</option>
               <option value="Trending">Trending</option>
               <option value="Oldest">Oldest Posts</option>
@@ -85,11 +120,10 @@ export function Home() {
           {loading ? (
             <Loader />
           ) : (
-            posts.map((post) => <Post key={post._id} post={post} />)
+            finalPosts.map((post) => <Post key={post._id} post={post} />)
           )}
         </div>
       </div>
-
       <RightSideBar />
     </main>
   );

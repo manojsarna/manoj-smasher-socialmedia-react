@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 const initialState = {
-  user: {},
-  token: "",
+  user: null,
+  token: null,
 };
 
 export const login = createAsyncThunk(
@@ -62,12 +62,16 @@ export const verify = createAsyncThunk("auth/verify", async () => {
   }
 });
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-  localStorage.removeItem("smasherToken");
-});
-
 const authSlice = createSlice({
   name: "auth",
+  reducers: {
+    logout(state) {
+      localStorage.removeItem("smasherToken");
+      state.user = null;
+      state.token = null;
+      toast.success("Logged Out");
+    },
+  },
   initialState,
   extraReducers(builder) {
     builder
@@ -80,7 +84,6 @@ const authSlice = createSlice({
         }
       })
       .addCase(login.rejected, (state, action) => {
-        console.log(action.payload);
         if (action.payload) {
           toast.error(action.payload);
         }
@@ -106,13 +109,8 @@ const authSlice = createSlice({
           state.user = action.payload.user;
           state.token = action.payload.encodedToken;
         }
-      })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.user = {};
-        state.token = "";
-        toast.success("Logged Out");
       });
   },
 });
-
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

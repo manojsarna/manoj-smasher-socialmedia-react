@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import {
-  FaComment,
   FaRegComment,
   FaHeart,
   FaRegHeart,
@@ -13,13 +12,15 @@ import {
 
 import { formatNumber } from "../../hooks/formatNumber";
 import {
-  bookmark,
+  addToBookmarks,
   dislikePost,
   likePost,
-  removeBookmark,
+  removeFromBookmarks,
 } from "../../redux/reducers/postsSlice";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 export function Post({ post }) {
   const dispatch = useDispatch();
+  const { width } = useWindowDimensions();
   const user = useSelector((state) => state.auth.user);
   const bookmarks = useSelector((state) => state.posts.bookmarks);
   const isPostLikedByUser = post.likes.likedBy?.some(
@@ -28,7 +29,7 @@ export function Post({ post }) {
     ? true
     : false;
 
-  const isPostBookmarkedByUser = bookmarks.some((item) => item._id === post._id)
+  const isPostBookmarkedByUser = bookmarks.some((id) => id === post._id)
     ? true
     : false;
 
@@ -43,12 +44,23 @@ export function Post({ post }) {
       </Link>
       <div className="sm-single-post-content">
         <div className="sm-post-user-info-date">
-          <span className="sm-post-name">{`${post.firstName} ${post.lastName} `}</span>
-          <span className="sm-post-username">{`@${post.username} `}</span>
+          <Link
+            to={`/${post.username}`}
+            className="sm-remove-link-props"
+            title="Go To Profile"
+          >
+            <span className="sm-post-name">{`${post.firstName} ${post.lastName} `}</span>
+            <span className="sm-post-username">{`@${post.username} `}</span>
+          </Link>
           <span className="sm-dot-separator"></span>
-          <span className="sm-post-date">{` ${dayjs(post.createdAt).format(
-            "MMM DD,YYYY hh:mm A"
-          )}`}</span>
+          <span
+            className="sm-post-date"
+            title={dayjs(post.createdAt).format("MMM DD,YYYY hh:mm A")}
+          >{` ${
+            width > 480
+              ? dayjs(post.createdAt).format("MMM DD,YYYY")
+              : dayjs(post.createdAt).format("MMM DD")
+          }`}</span>
         </div>
         <div className="sm-post-content">{post.content}</div>
         <div className="sm-post-cta-container">
@@ -79,8 +91,8 @@ export function Post({ post }) {
             }`}
             onClick={() => {
               isPostBookmarkedByUser
-                ? dispatch(removeBookmark(post._id))
-                : dispatch(bookmark(post._id));
+                ? dispatch(removeFromBookmarks(post._id))
+                : dispatch(addToBookmarks(post._id));
             }}
           >
             {isPostBookmarkedByUser ? <FaBookmark /> : <FaRegBookmark />}

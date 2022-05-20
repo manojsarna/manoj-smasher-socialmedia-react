@@ -80,22 +80,37 @@ export const postComment = createAsyncThunk(
   }
 );
 
-export const bookmark = createAsyncThunk("post/bookmark", async (postId) => {
+export const getBookmarks = createAsyncThunk("posts/getBookmarks", async () => {
   try {
     const encodedToken = localStorage.getItem("smasherToken");
-    const response = await axios.post(
-      `/api/users/bookmark/${postId}`,
-      {},
-      { headers: { authorization: encodedToken } }
-    );
+    const response = await axios.get("/api/users/bookmark", {
+      headers: { authorization: encodedToken },
+    });
     return response.data;
   } catch (error) {
     toast.error(`${error.response.data.errors}`);
   }
 });
 
-export const removeBookmark = createAsyncThunk(
-  "post/removeBookmark",
+export const addToBookmarks = createAsyncThunk(
+  "posts/addToBookmarks",
+  async (postId) => {
+    try {
+      const encodedToken = localStorage.getItem("smasherToken");
+      const response = await axios.post(
+        `/api/users/bookmark/${postId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      return response.data;
+    } catch (error) {
+      toast.error(`${error.response.data.errors}`);
+    }
+  }
+);
+
+export const removeFromBookmarks = createAsyncThunk(
+  "posts/removeFromBookmarks",
   async (postId) => {
     try {
       const encodedToken = localStorage.getItem("smasherToken");
@@ -154,14 +169,12 @@ const postsSlice = createSlice({
         state.loading = true;
       })
       .addCase(getPosts.fulfilled, (state, action) => {
-        console.log("in posts thunk", action.payload.posts);
         state.loading = false;
         state.posts = action.payload.posts;
       })
       .addCase(createPost.fulfilled, (state, action) => {
         toast.success("Post Created");
         state.posts = action.payload.posts;
-        console.log("in createPost thunk", action.payload.posts);
       })
       .addCase(likePost.fulfilled, (state, action) => {
         state.posts = action.payload.posts;
@@ -174,11 +187,14 @@ const postsSlice = createSlice({
       .addCase(postComment.fulfilled, (state, action) => {
         state.posts = action.payload.posts;
       })
-      .addCase(bookmark.fulfilled, (state, action) => {
+      .addCase(getBookmarks.fulfilled, (state, action) => {
+        state.bookmarks = action.payload.bookmarks;
+      })
+      .addCase(addToBookmarks.fulfilled, (state, action) => {
         toast.success("Added to Bookmarks");
         state.bookmarks = action.payload.bookmarks;
       })
-      .addCase(removeBookmark.fulfilled, (state, action) => {
+      .addCase(removeFromBookmarks.fulfilled, (state, action) => {
         toast.success("Removed From Bookmarks");
         state.bookmarks = action.payload.bookmarks;
       })

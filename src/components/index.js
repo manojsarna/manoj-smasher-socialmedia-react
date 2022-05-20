@@ -1,5 +1,4 @@
 export { Header } from "./header/Header";
-export { Card } from "./card/Card";
 export { Footer } from "./footer/Footer";
 export { Loader } from "./loader/Loader";
 export { PrivateRoute } from "./private-route/PrivateRoute";
@@ -9,3 +8,4 @@ export { LeftSideBar } from "./left-sidebar/LeftSideBar";
 export { RightSideBar } from "./right-sidebar/RightSideBar";
 export { ContentArea } from "./content-area/ContentArea";
 export { Post } from "./post/Post";
+export { AvatarCard } from "./avatar-card/AvatarCard";

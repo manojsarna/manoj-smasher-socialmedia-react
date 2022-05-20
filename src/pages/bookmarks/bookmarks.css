@@ -3,9 +3,16 @@
   flex-direction: column;
   align-items: initial;
   gap: 1rem;
-  margin: 2rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 .sm-main-user-bookmarks-container .sm-main-heading {
   font-size: 2.4rem;
   font-weight: 800;
+}
+
+.sm-no-bookmarks {
+  margin-left: 2rem;
+  font-size: 1.8rem;
+  font-weight: 700;
 }

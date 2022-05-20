@@ -6,17 +6,22 @@
   width: 100%;
   position: sticky;
   top: 8rem;
-  height: 90vh;
+  height: 89vh;
 }
 
 .sm-right-sidebar-container {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin-top: 2rem;
+  padding: 0 4rem;
+}
+
+.sm-suggested-users-container {
+  margin-top: 3rem;
 }
 
 /* MEDIA QUERIES */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .sm-right-sidebar {
     display: none;
   }

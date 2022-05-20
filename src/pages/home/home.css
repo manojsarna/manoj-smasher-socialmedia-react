@@ -21,7 +21,7 @@
 }
 
 .sm-home-avatar {
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .sm-home-text-area {
   background: var(--COLOR-BG);
@@ -68,7 +68,7 @@
 }
 .sm-home-select-sort {
   width: fit-content;
-  color: var(--COLOR-FONT);
+  color: var(--COLOR-HEADER-FONT-DARK);
   background: var(--COLOR-BG);
   padding: 1rem;
   font-weight: 700;
