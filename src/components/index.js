@@ -1,6 +1,5 @@
 export { Header } from "./header/Header";
 export { Footer } from "./footer/Footer";
-export { Loader } from "./loader/Loader";
 export { PrivateRoute } from "./private-route/PrivateRoute";
 export { RestrictedRoute } from "./restricted-route/RestrictedRoute";
 export { ScrollToTop } from "./scroll-to-top/ScrollToTop";
@@ -9,3 +8,4 @@ export { RightSideBar } from "./right-sidebar/RightSideBar";
 export { ContentArea } from "./content-area/ContentArea";
 export { Post } from "./post/Post";
 export { AvatarCard } from "./avatar-card/AvatarCard";
+export { CommentCard } from "./comment-card/CommentCard";

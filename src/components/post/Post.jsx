@@ -1,6 +1,6 @@
 import "./post.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import {
   FaRegComment,
@@ -8,16 +8,21 @@ import {
   FaRegHeart,
   FaBookmark,
   FaRegBookmark,
+  FaEdit,
 } from "react-icons/fa/";
+import { MdDelete } from "react-icons/md/";
 
 import { formatNumber } from "../../hooks/formatNumber";
 import {
   addToBookmarks,
+  deletePost,
   dislikePost,
   likePost,
   removeFromBookmarks,
 } from "../../redux/reducers/postsSlice";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { useState } from "react";
+import { EditPostModal } from "./EditPostModal";
 export function Post({ post }) {
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
@@ -33,12 +38,30 @@ export function Post({ post }) {
     ? true
     : false;
 
+  const { pathname } = useLocation();
+  const { username } = useParams();
+  const allUsers = useSelector((state) => state.users.users);
+  const profileUser = allUsers.find((user) => user.username === username);
+  const loginUserDetails = allUsers.find(
+    (item) => item.username === user.username
+  );
+  const isLoggedInUser = user?.username === profileUser?.username;
+
+  const [showEditModal, setShowEditModal] = useState(false);
+
   return (
     <div className="sm-single-post-container">
       <Link to={`/${post.username}`} className="sm-home-avatar">
         <div title="Go To Profile">
           <div className="avatar avatar-hover s-s ">
-            <img src={`${post.profilePhoto}`} alt="badminton" />
+            <img
+              src={
+                post.username === loginUserDetails.username
+                  ? loginUserDetails.profilePhoto
+                  : post.profilePhoto
+              }
+              alt="badminton"
+            />
           </div>
         </div>
       </Link>
@@ -50,7 +73,7 @@ export function Post({ post }) {
             title="Go To Profile"
           >
             <span className="sm-post-name">{`${post.firstName} ${post.lastName} `}</span>
-            <span className="sm-post-username">{`@${post.username} `}</span>
+            <span className="sm-post-username">{`  @${post.username} `}</span>
           </Link>
           <span className="sm-dot-separator"></span>
           <span
@@ -62,11 +85,25 @@ export function Post({ post }) {
               : dayjs(post.createdAt).format("MMM DD")
           }`}</span>
         </div>
-        <div className="sm-post-content">{post.content}</div>
+        <div className="sm-post-content-container">
+          <span className="sm-post-content">{post.content}</span>
+          {post.postImage && (
+            <div className="sm-post-content-image-container">
+              <img src={post.postImage} alt="badminton" />
+            </div>
+          )}
+        </div>
         <div className="sm-post-cta-container">
-          <span className="sm-cta-comment" title="Post Comments">
-            <FaRegComment />
-          </span>
+          <Link to={`/${user.username}/${post._id}`} className="sm-comment-cta">
+            <span className="sm-cta-comment" title="Post Comments">
+              <FaRegComment />
+              <span className="sm-cta-like-count">
+                {post.comments.length !== 0 &&
+                  formatNumber(post.comments.length)}
+              </span>
+            </span>
+          </Link>
+
           <span
             className="sm-cta-like"
             title={`${isPostLikedByUser ? "Dislike Post" : "Like Post"}`}
@@ -79,7 +116,7 @@ export function Post({ post }) {
             {isPostLikedByUser ? <FaHeart /> : <FaRegHeart />}
 
             <span className="sm-cta-like-count">
-              {formatNumber(post.likes.likeCount)}
+              {post.likes.likeCount !== 0 && formatNumber(post.likes.likeCount)}
             </span>
           </span>
           <span
@@ -97,8 +134,33 @@ export function Post({ post }) {
           >
             {isPostBookmarkedByUser ? <FaBookmark /> : <FaRegBookmark />}
           </span>
+          {isLoggedInUser && pathname === `/${username}` && (
+            <>
+              <span
+                className="sm-cta-edit"
+                title="Edit Post"
+                onClick={() => {
+                  setShowEditModal((p) => !p);
+                }}
+              >
+                <FaEdit />
+              </span>
+              <span
+                className="sm-cta-delete"
+                title="Delete Post"
+                onClick={() => dispatch(deletePost(post?._id))}
+              >
+                <MdDelete />
+              </span>
+            </>
+          )}
         </div>
       </div>
+      <EditPostModal
+        showEditModal={showEditModal}
+        setShowEditModal={setShowEditModal}
+        post={post}
+      />
     </div>
   );
 }

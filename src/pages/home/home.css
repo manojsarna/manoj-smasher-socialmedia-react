@@ -82,6 +82,25 @@
   border: 1px solid var(--COLOR-HEADER-FONT-DARK);
 }
 
+.sm-postimage-container {
+  position: relative;
+  width: fit-content;
+  border-radius: 10px;
+  margin: 0 2rem;
+}
+
+.sm-postimage-container img {
+  border-radius: 10px;
+}
+
+.sm-postimage-container .sm-close-icon {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  color: var(--COLOR-HEADER-FONT-DARK);
+  font-size: 4rem;
+}
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 768px) {

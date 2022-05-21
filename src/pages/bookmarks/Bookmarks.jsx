@@ -1,7 +1,7 @@
 import "./bookmarks.css";
 import { useSelector } from "react-redux";
-import { LeftSideBar, Loader, Post, RightSideBar } from "../../components";
-
+import { LeftSideBar, Post, RightSideBar } from "../../components";
+import { InfinitySpin as Loader } from "react-loader-spinner";
 export function Bookmarks() {
   const loading = useSelector((state) => state.posts.loading);
   const posts = useSelector((state) => state.posts.posts);
@@ -22,14 +22,17 @@ export function Bookmarks() {
               Save Posts for later. Right now there are no bookmarked posts.
             </span>
           )}
-          {loading ? (
-            <Loader />
-          ) : (
-            bookmarkedPosts.map((post) => <Post key={post._id} post={post} />)
-          )}
+          {bookmarkedPosts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
         </div>
       </div>
       <RightSideBar />
+      {loading && (
+        <div className="sm-react-loader-spinner">
+          <Loader />
+        </div>
+      )}
     </main>
   );
 }

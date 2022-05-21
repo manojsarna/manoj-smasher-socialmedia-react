@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { LeftSideBar, Loader, Post, RightSideBar } from "../../components";
+import { InfinitySpin as Loader } from "react-loader-spinner";
+import { LeftSideBar, Post, RightSideBar } from "../../components";
 import "./explore.css";
 export function Explore() {
   const posts = useSelector((state) => state.posts.posts);
@@ -17,14 +18,17 @@ export function Explore() {
           <div className="sm-home-top">
             <p className="sm-main-heading">Explore</p>
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            finalPosts.map((post) => <Post key={post._id} post={post} />)
-          )}
+          {finalPosts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
         </div>
       </div>
       <RightSideBar />
+      {loading && (
+        <div className="sm-react-loader-spinner">
+          <Loader />
+        </div>
+      )}
     </main>
   );
 }

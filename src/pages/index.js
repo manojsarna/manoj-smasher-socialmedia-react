@@ -4,4 +4,4 @@ export { Page404 } from "./page404/Page404";
 export { User } from "./user/User";
 export { Bookmarks } from "./bookmarks/Bookmarks";
 export { Explore } from "./explore/Explore";
-export { Post } from "./post/Post";
+export { PostComments } from "./post-comments/PostComments";

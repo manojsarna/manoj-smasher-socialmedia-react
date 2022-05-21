@@ -24,8 +24,6 @@ Smasher - Social Media App using [Smash UI](https://smashui.netlify.app/), React
 
 ## Video Demo of Smasher
 
-https://user-images.githubusercontent.com/45617406/162262232-f1f574d6-7968-4d1c-8d23-71a86e39128a.mp4
-
 ---
 
 ## Quick Start
@@ -35,13 +33,15 @@ To start using the Smasher you can visit the following link : [Smasher](https://
 ### P0 Features
 
 - [Home Page - User Feed](https://smasher-react.netlify.app/)
-- [Bookmark Posts Page](https://smasher-react.netlify.app/)
-- [Explore Posts Page](https://smasher-react.netlify.app/)
-- [Create a Post](https://smasher-react.netlify.app/)
+- [Create a Post - Text , Upload Images](https://smasher-react.netlify.app/)
+- [Likes](https://smasher-react.netlify.app/)
+- [Comments](https://smasher-react.netlify.app/)
 - [User Feed with Sort Posts - Newest, Trending, Oldest](https://smasher-react.netlify.app/)
 - [Edit & Delete Post](https://smasher-react.netlify.app/)
-- [User Profile Page](https://smasher-react.netlify.app/)
+- [User Profile Page - Profile Pic, Bio, Website URL](https://smasher-react.netlify.app/)
 - [Follow/Unfollow](https://smasher-react.netlify.app/)
+- [Explore Feed Page](https://smasher-react.netlify.app/)
+- [Bookmark Posts Page](https://smasher-react.netlify.app/)
 - [Authentication -SignUp, Login, Logout](https://smasher-react.netlify.app/)
 
 ### Extra Features Added
@@ -49,6 +49,7 @@ To start using the Smasher you can visit the following link : [Smasher](https://
 - Responsive Site (Both Desktop and Mobile Responsive)
 - Persisting Dark / Light Mode
 - CTAs on Footer in Mobile View
+- Loaders & Alerts Added
 - Remembering Routing History - After Login it will redirect to the path where it was initiated
 
 ---
