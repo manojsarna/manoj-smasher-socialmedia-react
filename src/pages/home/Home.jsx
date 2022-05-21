@@ -25,7 +25,7 @@ export function Home() {
   const user = useSelector((state) => state.auth.user);
   const allUsers = useSelector((state) => state.users.users);
   const loginUserDetails = allUsers.find(
-    (item) => item.username === user.username
+    (item) => item.username === user?.username
   );
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
@@ -102,13 +102,13 @@ export function Home() {
           </div>
           <div className="sm-home-new-post-conatiner">
             <Link
-              to={`/${loginUserDetails.username}`}
+              to={`/${loginUserDetails?.username}`}
               className="sm-home-avatar"
             >
               <div title="Go To Profile">
                 <div className="avatar avatar-hover s-s ">
                   <img
-                    src={`${loginUserDetails.profilePhoto}`}
+                    src={`${loginUserDetails?.profilePhoto}`}
                     alt="badminton"
                   />
                 </div>
