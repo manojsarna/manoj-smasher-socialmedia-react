@@ -63,7 +63,7 @@ export const updateUser = createAsyncThunk(
 
 export const followUser = createAsyncThunk(
   "users/followUser",
-  async (followUserId, { rejectWithValue }) => {
+  async ({ followUserId }, { rejectWithValue }) => {
     try {
       const encodedToken = localStorage.getItem("smasherToken");
       const response = await axios.post(
@@ -73,14 +73,14 @@ export const followUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return rejectWithValue(`${error.response.data.errors}`);
+      return rejectWithValue(`${error.response.data.error}`);
     }
   }
 );
 
 export const unfollowUser = createAsyncThunk(
   "users/unfollowUser",
-  async (followUserId, { rejectWithValue }) => {
+  async ({ followUserId }, { rejectWithValue }) => {
     try {
       const encodedToken = localStorage.getItem("smasherToken");
       const response = await axios.post(
@@ -154,6 +154,7 @@ const userSlice = createSlice({
       })
       .addCase(followUser.fulfilled, (state, action) => {
         state.loading = false;
+
         const { user, followUser } = action.payload;
         state.users = state.users.map((item) =>
           item.username === user.username ? user : item
@@ -165,6 +166,7 @@ const userSlice = createSlice({
       })
       .addCase(followUser.rejected, (state, action) => {
         state.loading = false;
+
         toast.error(action.payload);
       })
       .addCase(unfollowUser.pending, (state) => {
@@ -173,6 +175,7 @@ const userSlice = createSlice({
       .addCase(unfollowUser.fulfilled, (state, action) => {
         state.loading = false;
         const { user, followUser } = action.payload;
+
         state.users = state.users.map((item) =>
           item.username === user.username ? user : item
         );

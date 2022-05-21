@@ -6,30 +6,37 @@ import { InfinitySpin as Loader } from "react-loader-spinner";
 import { useDocTitle } from "../../hooks/useDocTitle";
 import { logout } from "../../redux/reducers/authSlice";
 import "./user.css";
-import { getUserPost } from "../../redux/reducers/usersSlice";
+import {
+  followUser,
+  getUserPost,
+  unfollowUser,
+} from "../../redux/reducers/usersSlice";
 import { toast } from "react-toastify";
+import { EditUserProfile } from "./edit-user-profile/EditUserProfile";
 
 export function User() {
   useDocTitle("User Profile - Smasher - Manoj Sarna");
   const { username } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [showEditProfile, setShowEditProfile] = useState(false);
   const allUsers = useSelector((state) => state.users.users);
-  // Logged In User
   const loggedInUser = useSelector((state) => state.auth.user);
+  const loginUserDetails = allUsers.find(
+    (user) => user.username === loggedInUser.username
+  );
   const profileUser = allUsers.find((user) => user.username === username);
   let currentUser =
-    loggedInUser?.username === profileUser?.username
-      ? loggedInUser
+    loginUserDetails?.username === profileUser?.username
+      ? loginUserDetails
       : profileUser;
 
-  if (!currentUser) {
-  }
   let currentUserPosts = useSelector((state) => state.users.profileUserPosts);
   const loading = useSelector((state) => state.users.loading);
 
-  const [followingThisUser, setFollowingThisUser] = useState(null);
+  const followingThisUser = loginUserDetails.following.some(
+    (user) => user.username === profileUser.username
+  );
 
   let allPosts = useSelector((state) => state.posts.posts);
   useEffect(() => {
@@ -52,14 +59,29 @@ export function User() {
               Profile
             </p>
 
-            {/* Following User */}
-            {loggedInUser?.username === profileUser?.username ? (
+            {loginUserDetails?.username === profileUser?.username ? (
               <div className="sm-user-profile-cta">
                 <button
                   className="sm-category-outline-btn sm-active"
                   title="Edit Profile"
+                  onClick={() => {
+                    setShowEditProfile((p) => !p);
+                  }}
                 >
                   <i className="fas fa-edit"></i>
+                </button>
+                <button
+                  className="sm-category-outline-btn sm-active"
+                  title="Share Profile"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(
+                      `https://smasher-react.netlify.app/${loginUserDetails.username}`
+                    );
+                    toast.success(`Profile Link Copied`);
+                  }}
+                >
+                  <i className="fas fa-share-alt"></i>
                 </button>
                 <button
                   className="sm-category-outline-btn sm-active"
@@ -72,15 +94,28 @@ export function User() {
             ) : (
               <div className="sm-user-profile-cta">
                 <button
+                  className="sm-category-outline-btn sm-active"
+                  title="Share Profile"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(
+                      `https://smasher-react.netlify.app/${profileUser.username}`
+                    );
+                    toast.success(`Profile Link Copied`);
+                  }}
+                >
+                  <i className="fas fa-share-alt"></i>
+                </button>
+                <button
                   className="btn btn-primary btn-bolder btn-round"
                   title={followingThisUser ? "Unfollow" : "Follow"}
-                  // onClick={() => {
-                  //   if (followingThisUser) {
-                  //     dispatch(unfollowUser(profileUser._id));
-                  //   } else {
-                  //     dispatch(followUser(profileUser._id));
-                  //   }
-                  // }}
+                  onClick={() => {
+                    if (followingThisUser) {
+                      dispatch(unfollowUser({ followUserId: profileUser._id }));
+                    } else {
+                      dispatch(followUser({ followUserId: profileUser._id }));
+                    }
+                  }}
                 >
                   {followingThisUser ? "Unfollow" : "Follow"}
                 </button>
@@ -124,6 +159,11 @@ export function User() {
               <Post key={post._id} post={post} />
             ))}
         </div>
+        <EditUserProfile
+          showEditProfile={showEditProfile}
+          setShowEditProfile={setShowEditProfile}
+          user={loginUserDetails}
+        />
       </div>
 
       <RightSideBar />

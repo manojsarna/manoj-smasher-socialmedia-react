@@ -42,6 +42,9 @@ export function Post({ post }) {
   const { username } = useParams();
   const allUsers = useSelector((state) => state.users.users);
   const profileUser = allUsers.find((user) => user.username === username);
+  const loginUserDetails = allUsers.find(
+    (item) => item.username === user.username
+  );
   const isLoggedInUser = user?.username === profileUser?.username;
 
   const [showEditModal, setShowEditModal] = useState(false);
@@ -51,7 +54,14 @@ export function Post({ post }) {
       <Link to={`/${post.username}`} className="sm-home-avatar">
         <div title="Go To Profile">
           <div className="avatar avatar-hover s-s ">
-            <img src={`${post.profilePhoto}`} alt="badminton" />
+            <img
+              src={
+                post.username === loginUserDetails.username
+                  ? loginUserDetails.profilePhoto
+                  : post.profilePhoto
+              }
+              alt="badminton"
+            />
           </div>
         </div>
       </Link>

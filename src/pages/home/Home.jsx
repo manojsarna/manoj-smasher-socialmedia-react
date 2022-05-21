@@ -23,6 +23,10 @@ export function Home() {
 
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.auth.user);
+  const allUsers = useSelector((state) => state.users.users);
+  const loginUserDetails = allUsers.find(
+    (item) => item.username === user.username
+  );
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
   let sortBy = useSelector((state) => state.posts.sortBy);
@@ -48,7 +52,7 @@ export function Home() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error);
       });
   };
 
@@ -97,10 +101,16 @@ export function Home() {
             </select>
           </div>
           <div className="sm-home-new-post-conatiner">
-            <Link to={`/${user.username}`} className="sm-home-avatar">
+            <Link
+              to={`/${loginUserDetails.username}`}
+              className="sm-home-avatar"
+            >
               <div title="Go To Profile">
                 <div className="avatar avatar-hover s-s ">
-                  <img src={`${user.profilePhoto}`} alt="badminton" />
+                  <img
+                    src={`${loginUserDetails.profilePhoto}`}
+                    alt="badminton"
+                  />
                 </div>
               </div>
             </Link>

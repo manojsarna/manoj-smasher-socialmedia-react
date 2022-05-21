@@ -14,6 +14,10 @@ import { useSelector } from "react-redux";
 export function LeftSideBar() {
   const location = useLocation();
   const user = useSelector((state) => state.auth.user);
+  const allUsers = useSelector((state) => state.users.users);
+  const loginUserDetails = allUsers.find(
+    (item) => item.username === user.username
+  );
   return (
     <aside className="sm-left-sidebar">
       <ul className="left-sidebar-list-container">
@@ -58,14 +62,15 @@ export function LeftSideBar() {
             <span>Bookmarks</span>
           </li>
         </Link>
-        <Link to={`/${user.username}`}>
+        <Link to={`/${loginUserDetails.username}`}>
           <li
             className={`${
-              location.pathname === `/${user.username}` && "sm-list-item-active"
+              location.pathname === `/${loginUserDetails.username}` &&
+              "sm-list-item-active"
             }`}
             title="Go To User Profile"
           >
-            {location.pathname === `/${user.username}` ? (
+            {location.pathname === `/${loginUserDetails.username}` ? (
               <FaUser />
             ) : (
               <FaRegUser />
@@ -81,16 +86,19 @@ export function LeftSideBar() {
           </li>
         </Link>
       </ul>
-      <Link to={`/${user.username}`} className="sm-profile-div-link">
+      <Link
+        to={`/${loginUserDetails.username}`}
+        className="sm-profile-div-link"
+      >
         <div className="sm-profile-div" title="Go To Profile">
           <div className="avatar avatar-hover s-s sm-profile-div-avatar">
-            <img src={`${user.profilePhoto}`} alt="badminton" />
+            <img src={`${loginUserDetails.profilePhoto}`} alt="badminton" />
           </div>
           <div className="sm-profile-info">
             <div className="sm-profile-name">
-              {`${user.firstName} ${user.lastName}`}
+              {`${loginUserDetails.firstName} ${loginUserDetails.lastName}`}
             </div>
-            <div className="sm-profile-username">{`@${user.username} `}</div>
+            <div className="sm-profile-username">{`@${loginUserDetails.username} `}</div>
           </div>
         </div>
       </Link>
