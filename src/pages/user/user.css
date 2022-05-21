@@ -1,21 +1,16 @@
-.sm-content-area {
-  grid-area: content-area;
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
 .sm-main-user-profile-container {
   display: flex;
   flex-direction: column;
   align-items: initial;
   gap: 1rem;
-  margin: 2rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 .sm-main-user-profile {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  margin: 0 2rem;
 }
 
 .sm-main-heading {
@@ -27,6 +22,45 @@
   height: 100%;
   display: grid;
   place-items: center;
+}
+
+.sm-user-profile-cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.sm-user-profile-main {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem 1rem;
+  border-bottom: 1px solid var(--COLOR-HEADER-FONT-DARK);
+}
+
+.sm-user-profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.sm-user-profile-content-username {
+  color: var(--COLOR-GREY);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.sm-user-profile-content-bio {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.sm-user-modal-counters {
+  display: flex;
+  gap: 1rem;
+}
+
+.sm-user-profile-count {
+  font-weight: 800;
 }
 
 .sm-user-card {

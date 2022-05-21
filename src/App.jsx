@@ -6,7 +6,15 @@ import {
   RestrictedRoute,
   ScrollToTop,
 } from "./components";
-import { Auth, Bookmarks, Explore, Home, Page404, Post, User } from "./pages";
+import {
+  Auth,
+  Bookmarks,
+  Explore,
+  Home,
+  Page404,
+  PostComments,
+  User,
+} from "./pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MockAPI from "./Mockman";
@@ -38,7 +46,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/:username" element={<User />} />
-          <Route path="/:username/:postId" element={<Post />} />
+          <Route path="/:username/:postId" element={<PostComments />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
         </Route>

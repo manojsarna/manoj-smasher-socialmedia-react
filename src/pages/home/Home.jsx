@@ -1,34 +1,69 @@
 import "./home.css";
 import { useDocTitle } from "../../hooks/useDocTitle";
-import {
-  LeftSideBar,
-  Loader,
-  Post,
-  RightSideBar,
-  ScrollToTop,
-} from "../../components";
+import { InfinitySpin as Loader } from "react-loader-spinner";
+import { LeftSideBar, Post, RightSideBar, ScrollToTop } from "../../components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { MdImage } from "react-icons/md/";
+import { AiOutlineCloseCircle } from "react-icons/ai/";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { createPost, sortByValue } from "../../redux/reducers/postsSlice";
+import { sortPosts } from "../../hooks/sortPosts";
 
 export function Home() {
   useDocTitle("Home - Smasher - Manoj Sarna");
-  const [postDetails, setPostDetails] = useState("");
+  const [postDetails, setPostDetails] = useState({
+    content: "",
+    postImage: "",
+  });
+
   const [selectSortValue, setSelectSortValue] = useState("Latest");
+  const loading = useSelector((state) => state.posts.loading);
+
+  const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
   let sortBy = useSelector((state) => state.posts.sortBy);
-  const loading = useSelector((state) => state.posts.loading);
+
+  const cloudinaryPost = async (postDetails) => {
+    const data = new FormData();
+    data.append("file", postDetails.postImage);
+    data.append(
+      "upload_preset",
+      process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+    );
+    const requestOptions = {
+      method: "POST",
+      body: data,
+    };
+    setIsLoading(true);
+    await fetch(process.env.REACT_APP_CLOUDINARY_API_URL, requestOptions)
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch(
+          createPost({ content: postDetails.content, postImage: json.url })
+        );
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const postHandler = (postDetails) => {
-    if (postDetails !== "") {
-      if (postDetails.length > 5) {
-        dispatch(createPost(postDetails));
-        setPostDetails("");
+    if (postDetails.content !== "") {
+      if (postDetails.content.length > 5) {
+        if (postDetails.postImage !== "") {
+          cloudinaryPost(postDetails);
+        } else {
+          dispatch(createPost(postDetails));
+        }
+        setPostDetails({
+          content: "",
+          postImage: "",
+        });
       } else {
         toast.error("Post length must be more than 5 chars!");
       }
@@ -37,30 +72,7 @@ export function Home() {
     }
   };
 
-  let finalPosts = [...posts];
-
-  switch (sortBy) {
-    case "Trending": {
-      finalPosts = finalPosts.sort(
-        (a, b) => b.likes.likeCount - a.likes.likeCount
-      );
-      break;
-    }
-    case "Latest": {
-      finalPosts = finalPosts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-      break;
-    }
-    case "Oldest": {
-      finalPosts = finalPosts.sort(
-        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-      );
-      break;
-    }
-    default:
-      break;
-  }
+  let finalPosts = sortPosts(posts, sortBy);
 
   return (
     <main className="sm-main">
@@ -98,17 +110,56 @@ export function Home() {
               autoFocus
               rows="4"
               className="sm-home-text-area"
-              value={postDetails}
-              onChange={(e) => setPostDetails(e.target.value)}
+              value={postDetails.content}
+              onChange={(e) =>
+                setPostDetails((prev) => ({
+                  ...prev,
+                  content: e.target.value,
+                }))
+              }
             ></textarea>
           </div>
+          {postDetails.postImage && (
+            <div className="sm-postimage-container">
+              <img
+                src={URL.createObjectURL(postDetails.postImage)}
+                alt="badminton"
+              />
+              <div
+                className="sm-close-icon "
+                onClick={(e) =>
+                  setPostDetails((prev) => ({
+                    ...prev,
+                    postImage: "",
+                  }))
+                }
+              >
+                <AiOutlineCloseCircle />
+              </div>
+            </div>
+          )}
           <div className="sm-home-feature-cta-container">
-            <span
-              className="sm-home-image-upload-btn"
-              title="Click To Upload Image"
-            >
-              <MdImage />
-            </span>
+            <label htmlFor="postImage">
+              <span
+                className="sm-home-image-upload-btn"
+                title="Click To Upload Image"
+              >
+                <MdImage />
+              </span>
+            </label>
+            <input
+              type="file"
+              id="postImage"
+              accept="image/*"
+              hidden
+              onInput={(e) =>
+                setPostDetails((prev) => ({
+                  ...prev,
+                  postImage: e.target.files[0],
+                }))
+              }
+            />
+
             <button
               className="btn btn-primary btn-bold btn-round "
               title="Smash It!!"
@@ -117,14 +168,17 @@ export function Home() {
               <span>Smash</span>
             </button>
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            finalPosts.map((post) => <Post key={post._id} post={post} />)
-          )}
+          {finalPosts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
         </div>
       </div>
       <RightSideBar />
+      {(isLoading || loading) && (
+        <div className="sm-react-loader-spinner">
+          <Loader />
+        </div>
+      )}
     </main>
   );
 }

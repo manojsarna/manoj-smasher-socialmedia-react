@@ -1,0 +1,24 @@
+.sm-single-comment-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem 1rem;
+  border-bottom: 1px solid var(--COLOR-HEADER-FONT-DARK);
+}
+
+.sm-main-user-comment-container .sm-main-heading {
+  margin: 0 2rem;
+}
+.sm-comment-delete-btn {
+  cursor: pointer;
+  color: var(--COLOR-HEADER-FONT-DARK);
+}
+
+.sm-comment-delete-btn:active {
+  transform: scale(0.98);
+}
+
+.sm-comment-delete-btn svg {
+  width: 1.8em;
+  height: 1.8em;
+}

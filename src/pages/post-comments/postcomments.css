@@ -1,0 +1,52 @@
+.sm-main-user-comment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: initial;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+.sm-main-user-comment-container .sm-main-heading {
+  font-size: 2.4rem;
+  font-weight: 800;
+  width: 100%;
+}
+
+.sm-add-comments {
+  padding: 1rem 2rem 2rem;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid var(--COLOR-HEADER-FONT-DARK);
+}
+
+.sm-comment-btn {
+  background: var(--COLOR-HEADER-FONT-DARK);
+  color: var(--COLOR-BLACK);
+  border: 1px solid var(--COLOR-HEADER-FONT-DARK);
+  border-radius: 5rem;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  transition: all 0.2s ease-in;
+}
+
+.sm-comment-btn:active {
+  transform: scale(0.98);
+}
+.sm-comment-btn:hover {
+  color: var(--COLOR-BLACK);
+  background: var(--COLOR-DARKEN-HOVER-1);
+}
+
+.sm-add-comments input {
+  font-size: 1.6rem;
+  outline: none;
+  padding: 1rem;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--COLOR-FONT);
+  border: 2px solid var(--COLOR-FONT);
+  width: 100%;
+}

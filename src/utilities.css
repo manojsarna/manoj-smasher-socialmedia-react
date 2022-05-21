@@ -43,11 +43,26 @@ html {
   padding: 1.5rem 0;
 }
 
+.sm-react-loader-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.sm-react-loader-spinner svg {
+  height: 30em;
+  width: 30em;
+}
+
 @media only screen and (max-width: 960px) {
   #root .sm-main {
     grid-template-areas: "left-sidebar content-area";
-    grid-template-columns: 1fr 6fr;
-    grid-gap: 5px;
+    grid-template-columns: 0fr 6fr;
   }
 }
 
