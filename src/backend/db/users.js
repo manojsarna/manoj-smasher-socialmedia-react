@@ -10,76 +10,252 @@ export const users = [
     _id: uuid(),
     firstName: "Manoj",
     lastName: "Sarna",
-    email: "manojsarna@gmail.com",
     username: "manojsarna",
+    email: "manojsarna@gmail.com",
     password: "Manoj@123",
     profilePhoto:
       "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
     coverPhoto:
       "https://res.cloudinary.com/ms-inc/image/upload/v1652618812/1500x500_qx8faw.jpg",
-    bio: "Full Stack Web Developer",
-    website: "https://neog.camp/",
+    bio: "FullStack Web Developer 1",
+    website: "https://smashui.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [
+      {
+        _id: uuid(),
+        firstName: "Holly",
+        lastName: "Jackson",
+        username: "hollyjackson",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Walter",
+        lastName: "White",
+        username: "walterwhite",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+      },
+    ],
+    followers: [
+      {
+        _id: uuid(),
+        firstName: "Holly",
+        lastName: "Jackson",
+        username: "hollyjackson",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Walter",
+        lastName: "White",
+        username: "walterwhite",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+      },
+    ],
+    bookmarks: [],
   },
-  {
-    _id: uuid(),
-    firstName: "Jesse",
-    lastName: "Green",
-    email: "jessegreen@gmail.com",
-    username: "jessegreen",
-    password: "Jessegreen@123",
-    profilePhoto:
-      "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
-    coverPhoto: "",
-    bio: "Frontend Developer",
-    website: "https://neog.camp/",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
+
   {
     _id: uuid(),
     firstName: "Holly",
     lastName: "Jackson",
-    email: "hollyjackson@gmail.com",
     username: "hollyjackson",
-    password: "Holly@123",
-    profilePhoto:
-      "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
-    coverPhoto: "",
-    bio: "MBA Finance",
-    website: "https://neog.camp/",
+    email: "hollyjackson@gmail.com",
+    password: "Holy@123",
+    bio: "FullStack Web Developer 2",
+    website: "https://smashui.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    profilePhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
+    coverPhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652618812/1500x500_qx8faw.jpg",
+    following: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+    ],
+    followers: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        firstName: "Frank",
+        lastName: "Hill",
+        username: "frankhill",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618938/blank-profile-picture-973460_960_720_gcq6h1.webp",
+      },
+    ],
+    bookmarks: [],
   },
+
   {
     _id: uuid(),
     firstName: "Frank",
     lastName: "Hill",
-    email: "frankhill@gmail.com",
     username: "frankhill",
+    email: "frankhill@gmail.com",
     password: "Frank@123",
-    profilePhoto:
-      "https://res.cloudinary.com/ms-inc/image/upload/v1652618938/blank-profile-picture-973460_960_720_gcq6h1.webp",
-    coverPhoto: "",
-    bio: "Student at Student",
-    website: "https://neog.camp/",
+    bio: "FullStack Web Developer 3",
+    website: "https://smashui.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    profilePhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652618938/blank-profile-picture-973460_960_720_gcq6h1.webp",
+    coverPhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652618812/1500x500_qx8faw.jpg",
+    followers: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Walter",
+        lastName: "White",
+        username: "walterwhite",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+      },
+    ],
+    following: [
+      {
+        _id: uuid(),
+        firstName: "Holly",
+        lastName: "Jackson",
+        username: "hollyjackson",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652621027/hollyjackson_stfsal.jpg",
+      },
+    ],
+    bookmarks: [],
   },
+
   {
     _id: uuid(),
     firstName: "Walter",
     lastName: "White",
-    email: "walterwhite@gmail.com",
     username: "walterwhite",
-    password: "Walter@123",
-    profilePhoto:
-      "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
-    coverPhoto: "",
-    bio: "Chemistry Teacher",
-    website: "https://www.google.com/",
+    email: "walterwhite@gmail.com",
+    password: "Walt@123",
+    bio: "FullStack Web Developer 4",
+    website: "https://smashui.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    profilePhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+    coverPhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652618812/1500x500_qx8faw.jpg",
+
+    followers: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        firstName: "Jesse",
+        lastName: "Green",
+        username: "jessegreen",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
+      },
+    ],
+    following: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        firstName: "Jesse",
+        lastName: "Green",
+        username: "jessegreen",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
+      },
+      {
+        firstName: "Frank",
+        lastName: "Hill",
+        username: "frankhill",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618938/blank-profile-picture-973460_960_720_gcq6h1.webp",
+      },
+    ],
+    bookmarks: [],
+  },
+
+  {
+    _id: uuid(),
+    firstName: "Jesse",
+    lastName: "Green",
+    username: "jessegreen",
+    email: "jessegreen@gmail.com",
+    password: "Jesse@123",
+    bio: "FullStack Web Developer 5",
+    website: "https://smashui.netlify.app/",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    profilePhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652620951/johndoe_y6l9yo.jpg",
+    coverPhoto:
+      "https://res.cloudinary.com/ms-inc/image/upload/v1652618812/1500x500_qx8faw.jpg",
+
+    following: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Walter",
+        lastName: "White",
+        username: "walterwhite",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+      },
+    ],
+    followers: [
+      {
+        firstName: "Manoj",
+        lastName: "Sarna",
+        username: "manojsarna",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652618738/6Ma76Y2Z_400x400_egub5u.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Walter",
+        lastName: "White",
+        username: "walterwhite",
+        profilePhoto:
+          "https://res.cloudinary.com/ms-inc/image/upload/v1652620899/BB-S5B-Walt-590_etlsew.webp",
+      },
+    ],
+    bookmarks: [],
   },
 ];

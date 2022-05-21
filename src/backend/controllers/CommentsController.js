@@ -55,7 +55,7 @@ export const addPostCommentHandler = function (schema, request) {
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
-      avatarURL: user.avatarURL,
+      profilePhoto: user.profilePhoto,
       votes: { upvotedBy: [], downvotedBy: [] },
       createdAt: formatDate(),
       updatedAt: formatDate(),
@@ -196,10 +196,10 @@ export const upvotePostCommentHandler = function (schema, request) {
       );
     }
     const { postId, commentId } = request.params;
-    const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(
       (comment) => comment._id === commentId
     );
+    const post = schema.posts.findBy({ _id: postId }).attrs;
 
     if (
       post.comments[commentIndex].votes.upvotedBy.some(
@@ -249,10 +249,10 @@ export const downvotePostCommentHandler = function (schema, request) {
       );
     }
     const { postId, commentId } = request.params;
-    const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(
       (comment) => comment._id === commentId
     );
+    const post = schema.posts.findBy({ _id: postId }).attrs;
 
     if (
       post.comments[commentIndex].votes.downvotedBy.some(
