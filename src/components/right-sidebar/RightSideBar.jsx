@@ -4,14 +4,14 @@ import "./rightsidebar.css";
 export function RightSideBar() {
   const user = useSelector((state) => state.auth.user);
   const users = useSelector((state) => state.users.users);
-  const loginUserDetails = users.find(
-    (item) => item.username === user.username
+  const loginUserDetails = users?.find(
+    (item) => item.username === user?.username
   );
 
   const suggestedUsers = users
     .filter(
       (item) =>
-        !loginUserDetails.following.find(
+        !loginUserDetails?.following.find(
           (tempUser) => tempUser.username === item.username
         ) && item.username !== user.username
     )

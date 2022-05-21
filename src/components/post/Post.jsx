@@ -43,7 +43,7 @@ export function Post({ post }) {
   const allUsers = useSelector((state) => state.users.users);
   const profileUser = allUsers.find((user) => user.username === username);
   const loginUserDetails = allUsers.find(
-    (item) => item.username === user.username
+    (item) => item.username === user?.username
   );
   const isLoggedInUser = user?.username === profileUser?.username;
 
@@ -56,8 +56,8 @@ export function Post({ post }) {
           <div className="avatar avatar-hover s-s ">
             <img
               src={
-                post.username === loginUserDetails.username
-                  ? loginUserDetails.profilePhoto
+                post.username === loginUserDetails?.username
+                  ? loginUserDetails?.profilePhoto
                   : post.profilePhoto
               }
               alt="badminton"

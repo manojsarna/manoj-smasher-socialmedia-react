@@ -34,8 +34,8 @@ export function User() {
   let currentUserPosts = useSelector((state) => state.users.profileUserPosts);
   const loading = useSelector((state) => state.users.loading);
 
-  const followingThisUser = loginUserDetails.following.some(
-    (user) => user.username === profileUser.username
+  const followingThisUser = loginUserDetails?.following.some(
+    (user) => user.username === profileUser?.username
   );
 
   let allPosts = useSelector((state) => state.posts.posts);
