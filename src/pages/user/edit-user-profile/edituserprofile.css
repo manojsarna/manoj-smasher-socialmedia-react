@@ -135,18 +135,7 @@
   gap: 2rem;
   padding: 2rem;
 }
-.sm-home-image-upload-btn {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  opacity: 1;
-  font-size: 4rem;
-  cursor: pointer;
-  color: var(--COLOR-HEADER-FONT-DARK);
-}
-.sm-home-image-upload-btn:hover {
-  color: var(--COLOR-HEADER-FONT-DARK);
-}
+
 .sm-home-new-edit-post-conatiner .avatar img {
   display: block;
   border-radius: 50%;
