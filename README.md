@@ -22,9 +22,9 @@ Smasher - Social Media App using [Smash UI](https://smashui.netlify.app/), React
 
 ---
 
-## Video Demo of Smasher
+## Demo of Smasher
 
----
+## ![image](https://user-images.githubusercontent.com/45617406/169650556-b5d30640-c02c-4b61-b5c3-09b2868cd353.png)
 
 ## Quick Start
 
